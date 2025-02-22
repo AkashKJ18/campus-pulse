@@ -1,0 +1,45 @@
+services:
+  backend:
+    build: ./campuse-pulse-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=development
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    networks:
+      - app-network
+    depends_on:
+      - redis
+      
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+    volumes:
+      - redis_data:/data
+
+  frontend:
+    build: ./campuse-pulse-frontend
+    ports:
+      - "4173:4173"
+    volumes:
+      - ./campuse-pulse-frontend:/campuse-pulse-frontend
+      - /campuse-pulse-frontend/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+    
+volumes:
+  redis_data:
