@@ -1,2 +1,1 @@
 # campus-pulse
-new repo
