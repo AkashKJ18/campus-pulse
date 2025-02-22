@@ -1,3 +1,1 @@
 # campus-pulse
-
-test
