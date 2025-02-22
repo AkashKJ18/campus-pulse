@@ -2,7 +2,7 @@
 FROM node:18
 
 # Set up working directory
-WORKDIR /campuse-pulse-backend
+WORKDIR /backend
 
 # Copy package.json and install dependencies
 COPY package*.json ./

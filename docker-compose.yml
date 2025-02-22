@@ -1,6 +1,6 @@
 services:
   backend:
-    build: ./campuse-pulse-backend
+    build: ./backend
     ports:
       - "8000:8000"
     environment:
@@ -24,12 +24,12 @@ services:
       - redis_data:/data
 
   frontend:
-    build: ./campuse-pulse-frontend
+    build: ./frontend
     ports:
       - "4173:4173"
     volumes:
-      - ./campuse-pulse-frontend:/campuse-pulse-frontend
-      - /campuse-pulse-frontend/node_modules
+      - ./frontend:/frontend
+      - /frontend/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
