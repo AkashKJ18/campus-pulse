@@ -5,19 +5,13 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Copy dependencies
-COPY package*.json ./
+COPY package.json .
 
 # Install dependencies
 RUN npm install
 
 # Copy app files
 COPY . .
-
-# Build the Vite app
-RUN npm run build
-
-# Install serve globally to serve the built files
-RUN npm install -g serve
 
 # Expose the correct Vite preview port
 EXPOSE 4173
